@@ -4,12 +4,6 @@ const video = document.getElementById('vid1');
 const c2 = document.getElementById('c2');
 const ctx = c2.getContext('2d');
 
-// HOT RELOADING
-const socket = new WebSocket('ws://localhost:13258');
-socket.onopen = function(event) {console.log('ws connected');};
-socket.onmessage = function(event) {if (event.data === 'reload') {window.location.reload();}};
-socket.onclose = function(event) {console.log('ws disconnected');};
-
 /**
  * A minimal 2D vector class
  */
