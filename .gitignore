@@ -1,0 +1,6 @@
+# Neural network model files
+*.pt
+*.onnx
+
+# ONNX Runtime files
+ort*
