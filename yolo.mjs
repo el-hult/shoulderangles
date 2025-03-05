@@ -1,4 +1,5 @@
 
+const model_name = 'yolo11s-pose.onnx'
 let session = null;
 
 const keypoint_dicts = [
@@ -128,6 +129,7 @@ const getImgData = function(ctx) {
   return reshaped_data;
 }
 
+
 /**
  * Take the image data from a canvas, and run the model on it
  * @param CanvasRenderingContext2D ctx 
@@ -139,12 +141,12 @@ export async function run_model(ctx) {
     console.assert(input.length === 3 * s * s);
     if (!session) {
         console.log('loading model .onnx');
-        session = await ort.InferenceSession.create("yolo11n-pose.onnx");
+        session = await ort.InferenceSession.create(model_name);
     }
 
     const yolo_input = new ort.Tensor(Float32Array.from(input), [1, 3, s, s]);
     const outputs = await session.run({ images: yolo_input });
-    const outputs2 = outputs["output0"]; // network has 1 output named 'output0', and batch size is 1
+    const outputs2 = outputs["output0"]; // network has 1 output named 'output0'
     console.assert(outputs2['dataLocation'] == 'cpu');
     console.assert(outputs2['dims'][0] == 1);
     console.assert(outputs2['dims'][1] == 56);

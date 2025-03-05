@@ -11,7 +11,7 @@
 import ultralytics
 
 # sizes of the models are n, s, m, l, x. All are same version (11 as of writing)
-model_name = 'yolo11n-pose'
+model_name = 'yolo11s-pose'
 print("Loading YOLO model...")
 model=ultralytics.YOLO(model_name+'.pt')
 print('Exporting')
